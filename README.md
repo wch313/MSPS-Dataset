@@ -1,26 +1,35 @@
 # MSPS Dataset
 
-**MSPS** is an expert-annotated dataset for pixel-level defect segmentation in monocrystalline silicon photovoltaic (PV) cells. The images were acquired using electroluminescence (EL) imaging under practical manufacturing conditions.
+**MSPS (Monocrystalline Silicon Photovoltaic Cell Defect Segmentation)** is an expert-annotated dataset for pixel-level defect segmentation in monocrystalline silicon photovoltaic cells. It contains production-line electroluminescence (EL) images with minute, low-contrast, multi-scale, and irregular defects.
 
 This repository accompanies the manuscript:
 
 > **DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation**  
+> Shenshen Zhao, Yumeng Hao, Chuhan Wang, and Qidong Li
 
 ## Dataset overview
 
-- **Task:** binary semantic segmentation of PV-cell defects
-- **Images:** 1,500 EL images
-- **Resolution:** 640 × 590 pixels
-- **Official split:** 1,000 training images and 500 test images
-- **Cell type:** monocrystalline silicon PV cells
-- **Representative defects:** busbar breaks, black spots, and cracks
-- **Challenging characteristics:** minute targets, low contrast, large scale variation, irregular boundaries, and severe foreground–background imbalance
+| Item | Description |
+|---|---|
+| Task | Binary semantic segmentation of PV-cell defects |
+| Number of images | 1,500 EL images |
+| Image resolution | 640 × 590 pixels |
+| Official split | 1,000 training images and 500 test images |
+| Cell type | Monocrystalline silicon PV cells |
+| Representative defects | Busbar breaks, black spots, and cracks |
+| Main challenges | Minute targets, low contrast, large scale variation, irregular boundaries, and severe foreground–background imbalance |
+
+## Acquisition and construction
+
+The data were derived from an on-site EL inspection workflow developed with a PV-cell manufacturer. An industrial EL camera captures full cell-string images, which are divided into two-cell crops at a resolution of 640 × 590 pixels. MSPS contains 1,500 representative crops selected from this production-line workflow.
+
+The images retain the difficult characteristics encountered in manufacturing, including extremely sparse defect pixels, blurred boundaries, irregular shapes, and substantial variation in defect size.
 
 ## Annotation protocol
 
-Each image was independently annotated at the pixel level by two PV-domain experts. When their annotations disagreed, a third expert reviewed the case and resolved the discrepancy. This procedure was used to improve annotation consistency and reliability.
+Each image was independently annotated at the pixel level by two PV-domain experts. Their annotations were compared to identify disagreements. Cases with discrepancies were reviewed by a third expert to improve annotation consistency and accuracy.
 
-## Dataset characteristics
+## Quantitative characteristics
 
 | Characteristic | Value |
 |---|---:|
@@ -31,39 +40,71 @@ Each image was independently annotated at the pixel level by two PV-domain exper
 | Approximate defect-pixel proportion | 0.05% |
 | Defects with irregular or jagged contours | 62.1% |
 
-These properties make MSPS especially suitable for studying segmentation under extreme class imbalance and for evaluating sensitivity to very small, low-contrast defects.
+These characteristics make MSPS suitable for studying small-target segmentation, class-imbalanced learning, boundary-aware modeling, and robust industrial visual inspection.
 
 ## Download
 
-The public dataset download links will be added here after the release package is uploaded.
+The MSPS dataset is available from the following mirrors:
 
-- **Baidu Netdisk:https://pan.baidu.com/s/1KXiSdl19XimXRJOVZskjsQ 提取码: zcmk 
-- **Google Netdisk:** [Link](https://drive.google.com/file/d/1X3F0fwZMI4bk8dXYewu9eBVJDeEz6eoY/view?usp=sharing)
+- **Baidu Netdisk:** [Download MSPS](https://pan.baidu.com/s/1KXiSdl19XimXRJOVZskjsQ) — access code: `zcmk`
+- **Google Drive:** [Download MSPS](https://drive.google.com/file/d/1X3F0fwZMI4bk8dXYewu9eBVJDeEz6eoY/view?usp=sharing)
 
-To preserve comparability with the accompanying paper, users should retain the official 1,000/500 training–test split when reporting benchmark results.
+For direct comparison with the accompanying paper, please retain the official split of 1,000 training images and 500 test images.
 
-## Intended use
+## On-site inspection context
 
-MSPS is intended for academic research on topics including:
+In the accompanying study, DACN was integrated into local inspection software. For each two-cell crop, the software converts the predicted mask into a defect-area ratio:
+
+```text
+R = number of predicted defect pixels / total number of pixels × 100%
+```
+
+The manufacturer-defined downstream grading rule used in the study is:
+
+| Grade | Defect-area ratio |
+|---|---:|
+| Grade A | R ≤ 0.01% |
+| Grade B | 0.01% < R ≤ 0.10% |
+| Grade C | R > 0.10% |
+
+These A/B/C grades are outputs of the downstream inspection workflow. **They are not additional ground-truth labels provided by MSPS**, and the thresholds should not be interpreted as universal industry standards.
+
+## Reference results
+
+The accompanying paper reports the following results on the fixed MSPS test set:
+
+| Method | Backbone | mIoU | FPS |
+|---|---|---:|---:|
+| DACN | ResNet-50 | 89.30% | 60 |
+| DACN-Lite | ShuffleNetV2 | 87.40% | 239 |
+
+The throughput values were measured on the GPU platform reported in the manuscript (NVIDIA RTX 3090 Ti).
+
+## Intended use and limitations
+
+MSPS is intended for academic research on:
 
 - photovoltaic-cell defect segmentation;
 - small-object and low-contrast segmentation;
 - class-imbalanced learning;
 - boundary-aware segmentation;
-- robust industrial visual inspection.
+- robustness analysis and industrial visual inspection.
 
-The dataset should not be interpreted as directly providing electrical power-loss prediction, lifetime estimation, or field-deployment validation.
+The dataset and accompanying results do not demonstrate electrical power-loss prediction, lifetime estimation, or deployment on resource-constrained edge hardware. MSPS does not provide output-power, resistance, or lifetime measurements.
 
 ## Citation
 
-If you use MSPS in your research, please cite the accompanying paper. Complete bibliographic information and a ready-to-copy BibTeX entry will be added after publication.
+If you use MSPS in your research, please cite the accompanying manuscript:
 
+> Shenshen Zhao, Yumeng Hao, Chuhan Wang, and Qidong Li, “DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation.”
+
+Complete publication information and a ready-to-copy BibTeX entry will be added after publication.
 
 ## License
 
-The dataset license will be announced together with the downloadable release package. Until then, no reuse license is granted by this repository.
+An explicit dataset reuse license has not yet been posted. Until a license is added, public availability of the download files should not be interpreted as permission for unrestricted reuse or redistribution.
 
-## Updates
+## Repository updates
 
-- Repository created under the official maintainer account.
-- Dataset download links and release-package details are pending.
+- Added Baidu Netdisk and Google Drive download mirrors.
+- Updated the dataset description, authorship, acquisition workflow, on-site inspection context, limitations, and reference results to match the latest manuscript.
