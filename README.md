@@ -38,7 +38,7 @@ These properties make MSPS especially suitable for studying segmentation under e
 
 The public dataset download links will be added here after the release package is uploaded.
 
-- **Baidu Netdisk:** coming soon
+- **Baidu Netdisk:https://pan.baidu.com/s/1KXiSdl19XimXRJOVZskjsQ 提取码: zcmk 
 - **Alternative mirror:** coming soon
 
 To preserve comparability with the accompanying paper, users should retain the official 1,000/500 training–test split when reporting benchmark results.
