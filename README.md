@@ -5,7 +5,6 @@
 This repository accompanies the manuscript:
 
 > **DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation**  
-> Chuhan Wang and Shenshen Zhao
 
 ## Dataset overview
 
