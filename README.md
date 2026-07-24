@@ -58,7 +58,6 @@ The dataset should not be interpreted as directly providing electrical power-los
 
 If you use MSPS in your research, please cite the accompanying paper. Complete bibliographic information and a ready-to-copy BibTeX entry will be added after publication.
 
-> Chuhan Wang and Shenshen Zhao, “DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation,” manuscript submitted to *Applied Energy*.
 
 ## License
 
