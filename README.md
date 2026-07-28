@@ -6,7 +6,7 @@
 
 This repository accompanies the manuscript:
 
-> **DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation**  
+> **DACN: Prediction-Conditioned Intermediate Representation Adjustment for Photovoltaic Cell Defect Segmentation**  
 > Shenshen Zhao, Yumeng Hao, Chuhan Wang, and Qidong Li
 
 ## Dataset overview
@@ -120,7 +120,7 @@ Accompanying manuscript:
 ```bibtex
 @unpublished{zhao2026dacn,
   author = {Zhao, Shenshen and Hao, Yumeng and Wang, Chuhan and Li, Qidong},
-  title  = {DACN: Dynamic Adjustment Contrast Network for Photovoltaic Cell Defect Segmentation},
+  title  = {DACN: Prediction-Conditioned Intermediate Representation Adjustment for Photovoltaic Cell Defect Segmentation},
   year   = {2026},
   note   = {Manuscript submitted to Applied Energy}
 }
