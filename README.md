@@ -84,7 +84,7 @@ The accompanying paper reports the following results on the fixed MSPS test set:
 | DACN | ResNet-50 | 89.30% | 60 |
 | DACN-Lite | ShuffleNetV2 | 87.40% | 239 |
 
-The throughput values were measured on the GPU platform reported in the manuscript (NVIDIA RTX 3090 Ti).
+The throughput values were measured on the GPU platform reported in the manuscript (NVIDIA RTX 3090 Ti). The on-site software example displays an end-to-end processing latency of 16.5 ms for the shown two-cell crop, corresponding to approximately 60.6 crops per second and thus agreeing with the rounded 60-FPS DACN throughput.
 
 ## Intended use and limitations
 
